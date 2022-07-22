@@ -1,58 +1,62 @@
 package Contact;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.List;
 
 
 
 public class contactService {
 	
-	static String uniqueID;
-	public String firstName;
 	
-	
-	static ArrayList<Contact> contactList = new ArrayList<Contact>();
-	
-	public contactService() {
+
+	public static UUID uniqueID;
 		
-		UUID uuid = UUID.randomUUID();
-		String uuidAsString = uuid.toString().substring(0, Math.min(uuidAsString.length(),10));
-			if (contactList.isEmpty()) {
-				uniqueID = uuidAsString;
-			}
-			
-	else {
-		int arraySize = contactList.size();
-		uniqueID = contactList.get(arraySize-1).getContactID();
-	}
-	return;
-	}  //creation of contact object and adding to the arraylist
-	public static void addContact(String firstName, String lastName, String phone, String address) {
-		Contact contact1 = new Contact(uniqueID, firstName, lastName, phone, address);
-		contactList.add(contact1);
-	}
+	private List<Contact> contactList = new ArrayList<>();
 	
-	// testing purposes
-	public static void addContact(Contact newContact) {
-		for (int i = 0; i < contactList.size();i++) {
-			if(newContact.equals(contactList.get(i).getContactID())) {
-				throw new IllegalArgumentException("Contact ID must be unique");
-			}
+	private void addContact(Contact contact) {
+		contactList.add(contact);
+}
+	
+	private void removeContactbyID(String contactID) {
+		for(Contact contact: contactList) {
+			if(contact.getContactID().equals(contactID))
+			contactList.remove(contact);
 		}
-		contactList.add(newContact);
-	}
-	public static void updateFirstName(String uniqueID, String firstName) {
-		for (int i = 0; i < contactList.size();i++) {
-			if(uniqueID.compareTo(contactList.get(i).getContactID())==0) {
-				contactList.get(i).getFirstName(firstName);
-			}
-		}
-		}
-	public static void updateLastName(String uniqueID, String lastName) {
-				for (int i = 0; i < contactList.size();i++) {
-					if(uniqueID.compareTo(contactList.get(i).getContactID())==0) {
-						contactList.get(i).getLastName(lastName);
-		}
-	}
-	}
+		showContactList();
 }
 
+	private void showContactList() {
+	for(Contact contact: contactList ) {
+		System.out.println(contact.getContactID() + " " + contact.getFirstName());
+	}
+	}
+	private void updateContactFieldbyID(String contactID) {
+		for(Contact contact: contactList) {
+			if(contact.getContactID().equals(contactID)) {
+				
+				System.out.println("Update Contact Fields");
+			contactList.remove(contact);
+			Contact contact1 = new Contact("9874565278","Johnny","Rockets","4565213521","2513 Paupauwela St");
+			contactList.add(contact1);
+			}
+			
+		}
+		
+	}
+	public static void main(String[] args) {
+		contactService contact = new contactService();
+		
+		Contact contact1 = new Contact("1234567891", "Siriwat", "Tenny", "1867530922", "8910 MerryWood");
+		Contact contact2 = new Contact("9876543215", "Sawywer", "Stallone", "8887879879","5085 Tiguex");
+		
+		
+		contact.addContact(contact1);
+		contact.addContact(contact2);
+		
+		contact.showContactList();
+		
+		contact.removeContactbyID("1234567891");
+		
+		contact.updateContactFieldbyID("9876543215");
+	}
+}
