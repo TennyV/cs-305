@@ -1,0 +1,57 @@
+package tests;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
+import Contact.Contact;
+
+class contactServiceTest {
+	
+	
+	private List<Contact> contactList = new ArrayList<>();
+	
+	
+	@Test
+		void addEmptyContact(Contact contact) {
+		assertTrue(contactList.add(null));
+		assertTrue(contactList.addAll(contactList));
+		System.out.print(false);
+	}
+	@Test
+	void removeContactbyNullID(Contact contact) {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+		new Contact(null, null, null, null, null);	
+		});
+	}
+		
+		@Test
+		private void showEmptyContactList() {
+			Assertions.assertThrows(IllegalArgumentException.class, () -> {
+				
+			});
+			for(Contact contact:contactList) {
+				
+			}
+		}
+				
+			@Test
+			private void updateContactFieldbyNullID() {
+				Assertions.assertThrows(IllegalArgumentException.class, () -> {
+					
+				});
+				Object contactID = null;
+				if(contactID.equals(null));
+				throw new IllegalArgumentException("Invalid expression");
+			
+	}
+			
+			
+
+}
